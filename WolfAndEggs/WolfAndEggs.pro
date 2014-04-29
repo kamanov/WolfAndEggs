@@ -13,12 +13,30 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    cfirst.cpp \
-    csecond.cpp
+    ctest.cpp \
+    channel.cpp \
+    game.cpp \
+    DetectMotionReport.cpp \
+    MotionDetector.cpp \
+    MotionLooper.cpp \
+    ResponsibilityArea.cpp \
+    stdafx.cpp \
+    Detectmotionreport.cpp \
+    MotionDetector.cpp
 
 HEADERS  += \
-    cfirst.h \
-    csecond.h
+    ctest.h \
+    channel.h \
+    game.h \
+    DetectMotionReport.h \
+    MotionDetector.h \
+    MotionLooper.h \
+    ResponsibilityArea.h \
+    Settings.h \
+    stdafx.h \
+    targetver.h \
+    DetectMotionReport.h \
+    MotionDetector.h
 
 FORMS    +=
 
@@ -32,6 +50,9 @@ LIBS += "C:\opencv\build\x86\vc10\lib\opencv_core246.lib"
 LIBS += "C:\opencv\build\x86\vc10\lib\opencv_imgproc246.lib"
 LIBS += "C:\opencv\build\x86\vc10\lib\opencv_highgui246.lib"
 LIBS += "C:\opencv\build\x86\vc10\lib\opencv_video246.lib"
+
+OTHER_FILES += \
+    WolfAndEggs.pro.user
 
 
 

@@ -10,8 +10,9 @@
 
 #include <string>
 
-#include "cfirst.h"
-
+#include "channel.h"
+#include "MotionLooper.h"
+#include "game.h"
 
 #include <imgproc\imgproc.hpp>
 #include <highgui.h>
@@ -25,31 +26,31 @@ void sleep(int msec) {
  int main(int argc, char *argv[])
  {
 
-     // задаём высоту и ширину картинки
-             int height = 620;
-             int width = 440;
-             // задаём точку для вывода текста
-             CvPoint pt = cvPoint( height/4, width/2 );
-             // Создаёи 8-битную, 3-канальную картинку
-             IplImage* hw = cvCreateImage(cvSize(height, width), 8, 3);
-             // заливаем картинку чёрным цветом
-             cvSet(hw,cvScalar(0,0,0));
-             // инициализация шрифта
-             CvFont font;
-             cvInitFont( &font, CV_FONT_HERSHEY_COMPLEX,1.0, 1.0, 0, 1, CV_AA);
-             // используя шрифт выводим на картинку текст
-             cvPutText(hw, "OpenCV Step By Step", pt, &font, CV_RGB(150, 0, 150) );
+//     // задаём высоту и ширину картинки
+//             int height = 620;
+//             int width = 440;
+//             // задаём точку для вывода текста
+//             CvPoint pt = cvPoint( height/4, width/2 );
+//             // Создаёи 8-битную, 3-канальную картинку
+//             IplImage* hw = cvCreateImage(cvSize(height, width), 8, 3);
+//             // заливаем картинку чёрным цветом
+//             cvSet(hw,cvScalar(0,0,0));
+//             // инициализация шрифта
+//             CvFont font;
+//             cvInitFont( &font, CV_FONT_HERSHEY_COMPLEX,1.0, 1.0, 0, 1, CV_AA);
+//             // используя шрифт выводим на картинку текст
+//             cvPutText(hw, "OpenCV Step By Step", pt, &font, CV_RGB(150, 0, 150) );
 
-             // создаём окошко
-             cvNamedWindow("Hello World", 0);
-             // показываем картинку в созданном окне
-             cvShowImage("Hello World", hw);
-             // ждём нажатия клавиши
-             cvWaitKey(0);
+//             // создаём окошко
+//             cvNamedWindow("Hello World", 0);
+//             // показываем картинку в созданном окне
+//             cvShowImage("Hello World", hw);
+//             // ждём нажатия клавиши
+//             cvWaitKey(0);
 
-             // освобождаем ресурсы
-             cvReleaseImage(&hw);
-             cvDestroyWindow("Hello World");
+//             // освобождаем ресурсы
+//             cvReleaseImage(&hw);
+//             cvDestroyWindow("Hello World");
 
 
 
@@ -64,15 +65,17 @@ void sleep(int msec) {
      QObject::connect(&quit, SIGNAL(clicked()), &app, SLOT(quit()));
      window.show();
 
+     MotionLooper* ml = new MotionLooper();
+     Channel* channel= new Channel(ml);
 
-     CFirst* first= new CFirst();
      QThread* thread = new QThread;
-     first->moveToThread(thread);
+     channel->moveToThread(thread);
+     Game* game = new Game();
 
-
-     QObject::connect(thread, SIGNAL(started()), first, SLOT(process()));
-     QObject::connect(first, SIGNAL(finished()), thread, SLOT(quit()));
-     QObject::connect(first, SIGNAL(finished()), first, SLOT(deleteLater()));
+     QObject::connect(channel, SIGNAL(sendReport(DetectMotionReport)), game, SLOT(getReport(DetectMotionReport)));
+     QObject::connect(thread, SIGNAL(started()), channel, SLOT(process()));
+     QObject::connect(channel, SIGNAL(finished()), thread, SLOT(quit()));
+     QObject::connect(channel, SIGNAL(finished()), channel, SLOT(deleteLater()));
      QObject::connect(thread, SIGNAL(finished()), thread, SLOT(deleteLater()));
 
 
