@@ -6,7 +6,6 @@
 #include <QWidget>
 #include <QFont>
 #include <QPushButton>
-#include <QTime>
 
 #include <string>
 
@@ -14,49 +13,23 @@
 #include "MotionLooper.h"
 #include "game.h"
 
-#include <imgproc\imgproc.hpp>
-#include <highgui.h>
 
-void sleep(int msec) {
-    QTime tt;
-    tt.start();
-    while(tt.elapsed() < msec);
-}
+
+ DetectMotionReport* report;
+ Settings* settings;
 
  int main(int argc, char *argv[])
  {
 
-//     // задаём высоту и ширину картинки
-//             int height = 620;
-//             int width = 440;
-//             // задаём точку для вывода текста
-//             CvPoint pt = cvPoint( height/4, width/2 );
-//             // Создаёи 8-битную, 3-канальную картинку
-//             IplImage* hw = cvCreateImage(cvSize(height, width), 8, 3);
-//             // заливаем картинку чёрным цветом
-//             cvSet(hw,cvScalar(0,0,0));
-//             // инициализация шрифта
-//             CvFont font;
-//             cvInitFont( &font, CV_FONT_HERSHEY_COMPLEX,1.0, 1.0, 0, 1, CV_AA);
-//             // используя шрифт выводим на картинку текст
-//             cvPutText(hw, "OpenCV Step By Step", pt, &font, CV_RGB(150, 0, 150) );
-
-//             // создаём окошко
-//             cvNamedWindow("Hello World", 0);
-//             // показываем картинку в созданном окне
-//             cvShowImage("Hello World", hw);
-//             // ждём нажатия клавиши
-//             cvWaitKey(0);
-
-//             // освобождаем ресурсы
-//             cvReleaseImage(&hw);
-//             cvDestroyWindow("Hello World");
-
-
-
-
      QApplication app(argc, argv);
 
+
+     report = new DetectMotionReport();
+     settings = new Settings();
+
+
+
+     /*
      QWidget window;
      window.resize(200, 120);
      QPushButton quit("Quit", &window);
@@ -64,26 +37,37 @@ void sleep(int msec) {
      quit.setGeometry(10, 40, 180, 40);
      QObject::connect(&quit, SIGNAL(clicked()), &app, SLOT(quit()));
      window.show();
+    */
 
      MotionLooper* ml = new MotionLooper();
      Channel* channel= new Channel(ml);
-
      QThread* thread = new QThread;
      channel->moveToThread(thread);
+
      Game* game = new Game();
 
-     QObject::connect(channel, SIGNAL(sendReport(DetectMotionReport)), game, SLOT(getReport(DetectMotionReport)));
+     QObject::connect(channel, SIGNAL(sendReport()), game, SLOT(getReport()), Qt::DirectConnection);
+     //QObject::connect(game, SIGNAL(sendSettings(Settings*)), channel, SLOT(getSettings(Settings*)));
      QObject::connect(thread, SIGNAL(started()), channel, SLOT(process()));
      QObject::connect(channel, SIGNAL(finished()), thread, SLOT(quit()));
      QObject::connect(channel, SIGNAL(finished()), channel, SLOT(deleteLater()));
      QObject::connect(thread, SIGNAL(finished()), thread, SLOT(deleteLater()));
 
-
      thread->start();
 
+     QThread* thread2 = new QThread;
+     game->moveToThread(thread2);
 
-     for(int i=0; i!=1000; ++i)
-        std::cout << "0";
+     QObject::connect(thread2, SIGNAL(started()), game, SLOT(process()));
+     QObject::connect(game, SIGNAL(finished()), thread2, SLOT(quit()));
+     QObject::connect(game, SIGNAL(finished()), game, SLOT(deleteLater()));
+     QObject::connect(thread2, SIGNAL(finished()), thread2, SLOT(deleteLater()));
+
+     thread2->start();
+     //DetectMotionReport report;
+     //channel->sendReport(report);
+
+
 
 
      return app.exec();

@@ -37,7 +37,7 @@ bool ResponsibilityArea::detectMotion(cv::Mat const & motionFrame, int const MAX
 	}
 
 	if (number_of_changes > (int)(COVER_RATIO * getArea())) {
-		std::cout << number_of_changes << std::endl;
+        //std::cout << number_of_changes << std::endl;
 		return true;
 	}
 

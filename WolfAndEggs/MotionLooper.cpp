@@ -2,6 +2,13 @@
 #include "MotionLooper.h"
 #include "channel.h"
 
+
+
+extern DetectMotionReport* report;
+extern Settings* settings;
+
+
+
 static const int SHIFT_FROM_BORDER = 10;
 static const int KERNEL_ERO_SIZE = 2;
 static const int KERNEL_DIL_SIZE = 3;
@@ -41,7 +48,7 @@ void MotionLooper::start()
 	int frameHeight = current_frame.rows;
 
 	MotionDetector motionDetector(frameWidth / 7, frameHeight / 7, frameWidth, frameHeight, SHIFT_FROM_BORDER);
-	DetectMotionReport report;
+    //DetectMotionReport report;
 
 	cv::Mat motionFrame;
 	cv::Mat kernel_ero = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(KERNEL_ERO_SIZE, KERNEL_ERO_SIZE));
@@ -55,17 +62,19 @@ void MotionLooper::start()
 		current_frame = next_frame;
 		cam >> next_frame;
 		result = next_frame;
-		cv::cvtColor(next_frame, next_frame, CV_RGB2GRAY);
+
+        if(next_frame.channels() == 3)
+            cv::cvtColor(next_frame, next_frame, CV_RGB2GRAY);
 
 		//motion detection
 		computeMotion(motionFrame, prev_frame, current_frame, next_frame, kernel_ero, kernel_dil);
-		motionDetector.detectMotion(motionFrame, report, MAX_DEVIATION, COVER_RATIO);
+        motionDetector.detectMotion(motionFrame, *report, MAX_DEVIATION, COVER_RATIO);
 		//end motion detection
 
 		//print result
-		//printReport(report);
-        emit owner_->sendReport(report);
-		report.clear();
+        //printReport(report);
+        emit owner_->sendReport();
+        //report.clear();
 
 		//Show frames
 		motionDetector.drawAreas(result);
@@ -80,7 +89,9 @@ void MotionLooper::start()
 void getGrayFrame(cv::VideoCapture & cam, cv::Mat & frame)
 {
 	cam >> frame;
-	cv::cvtColor(frame, frame, CV_RGB2GRAY);
+
+    if(frame.channels() == 3)
+        cv::cvtColor(frame, frame, CV_RGB2GRAY);
 }
 
 void computeMotion(cv::Mat & motion,
@@ -115,4 +126,9 @@ void printReport(DetectMotionReport const & report)
 	if (report.inRightDownArea_) {
 		std::cout << "in Right Down Area" << std::endl;
 	}
+}
+
+void MotionLooper::setSettings(Settings* settings)
+{
+    //settings_ = settings;
 }

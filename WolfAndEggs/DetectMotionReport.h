@@ -1,8 +1,9 @@
 #ifndef DETECT_MOTION_REPORT
 #define DETECT_MOTION_REPORT
 
-struct DetectMotionReport
+class DetectMotionReport
 {
+public:
 	bool inLeftUpArea_;
 	bool inRightUpArea_;
 	bool inLeftDownArea_;

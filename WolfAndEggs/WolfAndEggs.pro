@@ -13,7 +13,6 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    ctest.cpp \
     channel.cpp \
     game.cpp \
     DetectMotionReport.cpp \
@@ -25,7 +24,6 @@ SOURCES += main.cpp \
     MotionDetector.cpp
 
 HEADERS  += \
-    ctest.h \
     channel.h \
     game.h \
     DetectMotionReport.h \
