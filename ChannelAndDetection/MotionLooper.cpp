@@ -111,7 +111,7 @@ void MotionLooper::start()
 
 	while (true)
 	{
-		//readSettings();
+		readSettings();
 
         cv::Mat motionFrame;
         cv::Mat kernel_ero = cv::getStructuringElement(cv::MORPH_RECT,
@@ -136,7 +136,7 @@ void MotionLooper::start()
             owner_->sendReport(getNumberArea(*report_));
         }
 
-		printReport(*report_);
+		//printReport(*report_);
 
 		//Show frames
 		if (settings_->PRO_SETTINGS_MODE) {
