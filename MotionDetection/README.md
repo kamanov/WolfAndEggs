@@ -1,3 +1,0 @@
-WolfAndEggs
-===========
-DevDays project.
