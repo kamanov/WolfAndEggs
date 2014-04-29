@@ -5,6 +5,7 @@
 #include <QObject>
 #include <iostream>
 #include "detectmotionreport.h"
+#include "Settings.h"
 
 class Game : public QObject
 {
@@ -15,9 +16,10 @@ public:
 
 public slots:
     void process();
-    void getReport(DetectMotionReport dmr);
+    void getReport();
 
 signals:
+   void sendSettings(Settings*);
    void finished();
 };
 

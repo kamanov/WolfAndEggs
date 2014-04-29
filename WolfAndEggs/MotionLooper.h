@@ -23,13 +23,12 @@ class MotionLooper
 {
 	Channel* owner_;
 	MotionDetector motionDetector_;
-	DetectMotionReport report_;
 	Settings settings;
 public:
 	MotionLooper();
 	~MotionLooper();
 
-	void setSettings();
+    void setSettings(Settings*);
 	void setOwner(Channel * owner);
 	void start();
 };
