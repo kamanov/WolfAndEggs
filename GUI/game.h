@@ -23,6 +23,7 @@ public:
     Game(QRect& rect, QGraphicsScene* scene,QWidget* parent=0);
     ~Game();
     bool getPauseVal(){return isPaused;}
+    void setWolfPosition(int pos);
     void update(double dx, double dy);
     std::multimap<int,QString>& getRecords(){return records;}
 protected:

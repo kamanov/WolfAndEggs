@@ -53,6 +53,7 @@ signals:
     void continueGame();
 
 public slots:
+    void setWolfPosition(int pos);
     void enterMenu();
     void goToRecords();
     void newGameStart();

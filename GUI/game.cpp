@@ -72,6 +72,20 @@ Game::~Game()
     delete speedTimer;
 }
 
+void Game::setWolfPosition(int pos)
+{
+    switch (pos) {
+    case 1 : emit replaceWolf(Wolf::leftUp);
+
+        break;
+    case 2 : emit replaceWolf(Wolf::rightUp);
+    case 3 : emit replaceWolf(Wolf::leftDown);
+    case 4 : emit replaceWolf(Wolf::leftUp);
+    default:
+        break;
+    }
+}
+
 void Game::update(double dx, double dy)
 {
     m_dx = dx;

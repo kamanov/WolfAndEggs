@@ -36,6 +36,11 @@ MainWidget::MainWidget(QWidget *parent)
     QObject::connect(recordsView->newBut,SIGNAL(clicked()),this,SLOT(newGameStart()));
 }
 
+void MainWidget::setWolfPosition(int pos)
+{
+    gameField->setWolfPosition(pos);
+}
+
 MainWidget::~MainWidget()
 {
     saveSettings();
