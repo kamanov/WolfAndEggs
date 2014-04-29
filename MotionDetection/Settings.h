@@ -3,6 +3,8 @@
 
 struct Settings
 {
+	int FRAME_WIDTH;
+	int FRAME_HEIGHT;
 	int AREA_WIDTH;
 	int AREA_HEIGHT;
 	int SHIFT_FROM_BORDER;
@@ -15,6 +17,11 @@ struct Settings
 
 	int THRESHOLD;
 	int DELAY;
+
+	bool PRO_SETTINGS_MODE;
+
+	Settings();
+	void setDefault();
 };
 
 #endif // SETTINGS

@@ -7,7 +7,7 @@ ResponsibilityArea::ResponsibilityArea(int xStart, int yStart, int width, int he
 : xStart_(xStart), yStart_(yStart), width_(width), height_(height), title_(title)
 {}
 
-void ResponsibilityArea::setSize(int xStart, int yStart, int width, int height)
+void ResponsibilityArea::setCoordSize(int xStart, int yStart, int width, int height)
 {
 	xStart_ = xStart;
 	yStart_ = yStart;
@@ -37,7 +37,7 @@ bool ResponsibilityArea::detectMotion(cv::Mat const & motionFrame, int const MAX
 	}
 
 	if (number_of_changes > (int)(COVER_RATIO * getArea())) {
-		std::cout << number_of_changes << std::endl;
+		//std::cout << number_of_changes << std::endl;
 		return true;
 	}
 
@@ -50,10 +50,16 @@ int ResponsibilityArea::getArea()
 	return width_ * height_;
 }
 
-void ResponsibilityArea::drawArea(cv::Mat & frame)
+void ResponsibilityArea::drawArea(cv::Mat & frame, bool isMotionOccurred)
 {
-	cv::Scalar color(0, 255, 255);
-	rectangle(frame, cv::Rect(xStart_, yStart_, width_, height_), color, 2);
+	cv::Scalar red(0, 0, 255);
+	cv::Scalar yellow(0, 255, 255);
+	if (isMotionOccurred) {
+		rectangle(frame, cv::Rect(xStart_, yStart_, width_, height_), red, 2);
+	}
+	else {
+		rectangle(frame, cv::Rect(xStart_, yStart_, width_, height_), yellow, 2);
+	}
 }
 
 std::string ResponsibilityArea::getTitle()

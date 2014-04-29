@@ -20,13 +20,14 @@ class ResponsibilityArea
 	int getArea();
 
 public:
+	ResponsibilityArea();
 	ResponsibilityArea(int xStart, int yStart, int widht, int height, std::string const & title);
 	
-	void setSize(int xStart, int yStart_, int width, int height);
+	void setCoordSize(int xStart, int yStart_, int width, int height);
 	bool detectMotion(cv::Mat const & motionFrame, int const MAX_DEVIATION, int const COVER_RATIO);
 	std::string getTitle();
 
-	void drawArea(cv::Mat & frame);
+	void drawArea(cv::Mat & frame, bool isMotionOccurred);
 };
 
 #endif // RESPONSIBILITY_AREA

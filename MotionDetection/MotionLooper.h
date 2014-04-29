@@ -6,36 +6,38 @@
 #include "DetectMotionReport.h"
 #include "Settings.h"
 
-void getGrayFrame(cv::VideoCapture & cam, cv::Mat & frame);
 
-void computeMotion(cv::Mat & motion,
-	cv::Mat const & prev_frame,
-	cv::Mat const & current_frame,
-	cv::Mat const & next_frame,
-	cv::Mat const & kernel_ero,
-	cv::Mat const & kernel_dil);
-
-void printReport(DetectMotionReport const & report);
-
-class Channel
-{
-public:
-	void sendReport(DetectMotionReport detectMotionReport){}
-};
+class Channel;
 
 class MotionLooper
 {
 	Channel* owner_;
-	MotionDetector motionDetector_;
-	DetectMotionReport report_;
-	Settings settings;
+	MotionDetector* motionDetector_;
+	DetectMotionReport* report_;
+	Settings* settings_;
+
+	bool isStopRequested;
+	bool isPauseRequested;
 public:
 	MotionLooper();
+	MotionLooper(Settings* settings);
+	MotionLooper(Settings* settings, DetectMotionReport* report);
 	~MotionLooper();
 
-	void setSettings();
+	void setSettings(Settings* settings);
+	void readSettings();
 	void setOwner(Channel * owner);
 	void start();
+	void stop();
+	void pauseLoop();
+	void continueLoop();
+
+	void computeMotion(cv::Mat & motion,
+		cv::Mat const & prev_frame,
+		cv::Mat const & current_frame,
+		cv::Mat const & next_frame,
+		cv::Mat const & kernel_ero,
+		cv::Mat const & kernel_dil);
 };
 
 #endif // MOTION_LOOPER

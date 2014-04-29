@@ -22,9 +22,9 @@ public:
 	MotionDetector(int areaWidth, int areaHeight, int frameWidth, int frameHeight, int shiftFromBorder);
 	~MotionDetector();
 
-	void detectMotion(cv::Mat const & motionFrame, DetectMotionReport & report, int const MAX_DEVIATION, int const COVER_RATIO);
+	void detectMotion(cv::Mat const & motionFrame, DetectMotionReport * report, int const MAX_DEVIATION, int const COVER_RATIO);
 	void setAreasCoord(int areaWidth, int areaHeight, int frameWidth, int frameHeight, int shiftFromBorder);
-	void drawAreas(cv::Mat & frame);
+	void drawAreas(cv::Mat & frame, DetectMotionReport* report);
 };
 
 #endif // MOTION_DETECTOR
