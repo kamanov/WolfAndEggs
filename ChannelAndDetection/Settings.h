@@ -14,6 +14,8 @@ struct Settings
 
 	int KERNEL_ERO_SIZE;
 	int KERNEL_DIL_SIZE;
+	bool ERODE;
+	bool DILATE;
 
 	int THRESHOLD;
 	int DELAY;

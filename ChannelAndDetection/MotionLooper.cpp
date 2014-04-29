@@ -78,8 +78,12 @@ void MotionLooper::computeMotion(cv::Mat & motion,
 	cv::bitwise_and(d1, d2, motion);
 	cv::threshold(motion, motion, settings_->THRESHOLD, 255, CV_THRESH_BINARY);
 
-	cv::erode(motion, motion, kernel_ero);
-	cv::dilate(motion, motion, kernel_dil);
+	if (settings_->ERODE) {
+		cv::erode(motion, motion, kernel_ero);
+	}
+	if (settings_->DILATE) {
+		cv::dilate(motion, motion, kernel_dil);
+	}
 }
 
 void MotionLooper::start()
@@ -132,12 +136,18 @@ void MotionLooper::start()
             owner_->sendReport(getNumberArea(*report_));
         }
 
+		printReport(*report_);
+
 		//Show frames
 		if (settings_->PRO_SETTINGS_MODE) {
 			motionDetector_->drawAreas(result, report_);
 			motionDetector_->drawAreas(motionFrame, report_);
-			cv::imshow("mainWindow", result);
-			cv::imshow("motionWindow", motionFrame);
+			cv::Mat mirResult;
+			cv::Mat mirMotion;
+			cv::flip(result, mirResult, 1);
+			cv::flip(motionFrame, mirMotion, 1);
+			cv::imshow("mainWindow", mirResult);
+			cv::imshow("motionWindow", mirMotion);
 		}
 
 		if (isStopRequested) {

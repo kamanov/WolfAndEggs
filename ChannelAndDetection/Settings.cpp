@@ -16,7 +16,7 @@ void Settings::setDefault()
 	SHIFT_FROM_BORDER = 20;
 
 	MAX_DEVIATION = 20;
-	COVER_RATIO = 0.001;
+	COVER_RATIO = 0.002;
 
 	KERNEL_ERO_SIZE = 2;
 	KERNEL_DIL_SIZE = 2;
@@ -25,4 +25,6 @@ void Settings::setDefault()
 	DELAY = 30;
 
 	PRO_SETTINGS_MODE = true;
+	ERODE = true;
+	DILATE = true;
 }
