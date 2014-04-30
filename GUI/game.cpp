@@ -81,7 +81,7 @@ void Game::setWolfPosition(int pos)
         break;
     case 2 : emit replaceWolf(Wolf::WolfPosition::rightUp);
     case 3 : emit replaceWolf(Wolf::WolfPosition::leftDown);
-    case 4 : emit replaceWolf(Wolf::WolfPosition::leftUp);
+    case 4 : emit replaceWolf(Wolf::WolfPosition::rightDown);
     default:
         break;
     }
@@ -191,17 +191,17 @@ void Game::initHens()
 
 void Game::mouseMoveEvent(QMouseEvent *event)
 {
-    if(event->pos().y()> m_dy * 326){
+    /*if(event->pos().y()> m_dy * 326){
         if(event->pos().x()> m_dx * 350)
-            emit replaceWolf(Wolf::rightDown);
+            emit replaceWolf(Wolf::WolfPosition::rightDown);
         else
-            emit replaceWolf(Wolf::leftDown);
+            emit replaceWolf(Wolf::WolfPosition::leftDown);
      } else if(event->pos().y()< m_dy * 321) {
         if (event->pos().x()> m_dx * 415)
-            emit replaceWolf(Wolf::rightUp);
+            emit replaceWolf(Wolf::WolfPosition::rightUp);
         else
-            emit replaceWolf(Wolf::leftUp);
-    }
+            emit replaceWolf(Wolf::WolfPosition::leftUp);
+    } */
 }
 
 void Game::addChickScore()
