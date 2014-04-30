@@ -106,8 +106,7 @@ void MotionLooper::start()
 
 	readSettings();
 
-	cv::namedWindow("mainWindow");
-	cv::namedWindow("motionWindow");
+
 
 	while (true)
 	{
@@ -123,7 +122,7 @@ void MotionLooper::start()
 		current_frame = next_frame;
 		cam >> next_frame;
 
-        result =next_frame.clone();
+        result = next_frame.clone();
         cv::blur( next_frame, next_frame, cv::Size( 15, 15 ) );
 
         if(next_frame.channels() == 3)
@@ -142,13 +141,16 @@ void MotionLooper::start()
         //printReport(*report_);
 
 		//Show frames
-        if (settings_->PRO_SETTINGS_MODE) {
+        if (/*settings_->PRO_SETTINGS_MODE*/false) {
 			motionDetector_->drawAreas(result, report_);
 			motionDetector_->drawAreas(motionFrame, report_);
 			cv::Mat mirResult;
 			cv::Mat mirMotion;
 			cv::flip(result, mirResult, 1);
 			cv::flip(motionFrame, mirMotion, 1);
+
+            cv::namedWindow("mainWindow");
+            cv::namedWindow("motionWindow");
 			cv::imshow("mainWindow", mirResult);
 			cv::imshow("motionWindow", mirMotion);
 		}
