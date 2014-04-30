@@ -156,7 +156,7 @@ void MotionLooper::start()
         }
 
         if (settings_->STOP) {
-            STOP = false;
+            settings_->STOP = false;
 			break;
 		}
 
