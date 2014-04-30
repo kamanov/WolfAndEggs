@@ -105,9 +105,6 @@ void MotionLooper::start()
     settings_->AREA_HEIGHT = settings_->FRAME_HEIGHT / 5;
 
 	readSettings();
-
-
-
 	while (true)
 	{
 		readSettings();
@@ -159,6 +156,7 @@ void MotionLooper::start()
         }
 
 		if (isStopRequested) {
+            isStopRequested = false;
 			break;
 		}
 
