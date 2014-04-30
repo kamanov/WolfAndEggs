@@ -88,7 +88,7 @@ void MainWidget::initStackedWidget()
     st->addWidget(m_settingsWidget);
     //st->addWidget(manage);
     //st->addWidget(about);
-    //st->addWidget(recordsView);
+    st->addWidget(recordsView);
 }
 
 void MainWidget::saveSettings()
@@ -143,7 +143,7 @@ void MainWidget::initButtons()
 
 
     QObject::connect(menuBut,SIGNAL(clicked()),this,SLOT(enterMenu()));
-   // QObject::connect(newGame,SIGNAL(clicked()),gameField,SLOT(newGame()));
+    QObject::connect(newGame,SIGNAL(clicked()),gameField,SLOT(newGame()));
     QObject::connect(pauseGame,SIGNAL(clicked()),gameField,SLOT(pauseGame()));
     QObject::connect(endGame,SIGNAL(clicked()),this,SLOT(close()));
     QObject::connect(endGame,SIGNAL(clicked()), this, SLOT(endGameSlot()));
@@ -152,7 +152,7 @@ void MainWidget::initButtons()
     QObject::connect(leftDown,SIGNAL(clicked()),gameField,SLOT(wolfLeftDown()));
     QObject::connect(rightDown,SIGNAL(clicked()),gameField,SLOT(wolfRightDown()));
     QObject::connect(pauseGame,SIGNAL(released()),gameField,SLOT(setFocus()));
-    //QObject::connect(newGame,SIGNAL(released()),gameField,SLOT(setFocus()));
+    QObject::connect(newGame,SIGNAL(released()),gameField,SLOT(setFocus()));
     QObject::connect(menuBut,SIGNAL(released()),gameField,SLOT(setFocus()));
     QObject::connect(leftUp,SIGNAL(released()),gameField,SLOT(setFocus()));
     QObject::connect(rightUp,SIGNAL(released()),gameField,SLOT(setFocus()));
@@ -178,7 +178,7 @@ void MainWidget::enterMenu()
 
 void MainWidget::goToRecords()
 {
-    st->setCurrentIndex(4);
+    st->setCurrentIndex(3);
     recordsView->printRecords(gameField->getRecords());
 }
 

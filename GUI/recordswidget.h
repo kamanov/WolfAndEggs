@@ -11,12 +11,15 @@ class recordsWidget : public UpdatedWidget
     Q_OBJECT
     
 public:
+    virtual void update(double dx, double dy);
     recordsWidget(QRect& rect, QWidget *parent = 0);
     ~recordsWidget();
     void printRecords(std::multimap<int,QString>& recs);
     QPushButton* newBut;
+
 private:
     QTableWidget* tbl;
+    QRect m_tableRect;
 public slots:
     void setBack();
 };

@@ -113,15 +113,15 @@ void Game::update(double dx, double dy)
             mov->start();
     }
 
-    /*for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 3; i++) {
         if (chicks[i] != 0) {
             delete chicks[i];
             chicks[i]=new QLabel;
             chicks[i]->setPixmap(m_chickenScore.scaled(m_initChickSize.width() * dx, m_initChickSize.height() * dy));
             chicks[i]->setGeometry(transformRect(m_chicksRect[i], dx, dy));
-            //m_scene->addWidget(chicks[i]);
+            m_scene->addWidget(chicks[i]);
         }
-    } */
+    }
 
     setGeometry(transformRect(m_initRect, dx, dy));
     m_scene->setSceneRect(transformRect(QRect(-405, -275, 808, 533), dx, dy));
@@ -211,7 +211,7 @@ void Game::mouseMoveEvent(QMouseEvent *event)
 
 void Game::addChickScore()
 {
-   /* if(chScore < 3){
+    if(chScore < 3){
         if(chicks[2 - chScore] != 0) {
             delete chicks[2 - chScore];
             chicks[2 - chScore] = 0;
@@ -222,23 +222,23 @@ void Game::addChickScore()
        endGameProc();
 
      chScore++;
-*/
+
 
 }
 
 void Game::initChicks()
 {
-   /* m_initChickSize = QSize(50, 95);
+    m_initChickSize = QSize(50, 95);
     m_chickenScore = QPixmap(":/chickenscore.png");
     for(int i = 0;i < 3;i++){
         chicks[i] = new QLabel;
-        chicks[i]->setPixmap(m_chickenScore);
+        chicks[i]->setPixmap(m_chickenScore.scaled(m_initChickSize.width() * m_dx, m_initChickSize.height() * m_dy));
 
         m_chicksRect[i] = QRect(150+i*50, -265, 50, 95);
-        chicks[i]->setGeometry(m_chicksRect[i]);
+        chicks[i]->setGeometry(transformRect(m_chicksRect[i], m_dx, m_dy));
         m_scene->addWidget(chicks[i]);
     }
-*/
+
 }
 
 void Game::speedCorrection()
@@ -262,7 +262,7 @@ void Game::catchControl()
                     m_eggs.removeOne(m_egg);
                     delete m_egg;
                     score++;
-                    if(score%5 == 0)
+                    if(score%15 == 0)
                        speedCorrection();
                     lcd->display(score);
                  }
@@ -295,7 +295,7 @@ void Game::startAnimation(Egg* p)
      mov->setScaledSize(QSize(290 * m_dx, 83 * m_dy));
      label->setMovie(mov);
      mov->start();
-     //m_scene->addWidget(label);
+     m_scene->addWidget(label);
      label->setGeometry(geo);
 
      m_scene->removeItem(p);

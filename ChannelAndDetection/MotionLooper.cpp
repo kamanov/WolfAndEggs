@@ -2,7 +2,6 @@
 #include "MotionLooper.h"
 #include "channel.h"
 
-
 static void getGrayFrame(cv::VideoCapture & cam, cv::Mat & frame);
 static void printReport(DetectMotionReport const & report);
 

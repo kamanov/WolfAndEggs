@@ -1,6 +1,6 @@
 #include "channel.h"
 #include "MotionLooper.h"
-
+#include <QDebug>
 
 extern DetectMotionReport* report;
 extern Settings* settings;
@@ -15,7 +15,6 @@ void Channel :: process(){
 
 
     motionLooper_->start();
-
     emit finished();
 
 }

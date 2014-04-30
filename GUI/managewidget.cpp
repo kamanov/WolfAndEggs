@@ -11,7 +11,7 @@ manageWidget::manageWidget(QRect& rect, QWidget *parent)
     QPalette p = palette();
     p.setBrush(backgroundRole(), QBrush(m_background));
     setPalette(p);
-    QPushButton* backBut=new  Button(QRect(15,500,87,27), QPixmap(), this);
+    QPushButton* backBut = new  Button(QRect(15,500,87,27), QPixmap(), this);
     backBut->setText("НАЗАД");
     setAutoFillBackground(true);
     QObject::connect(backBut,SIGNAL(clicked()),this,SLOT(setBack()));

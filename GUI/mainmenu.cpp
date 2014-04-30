@@ -20,13 +20,11 @@ mainMenu::mainMenu(QRect& rect, QWidget *parent)
     QPushButton* contBut = new Button(QRect(276,136,258,47), QPixmap(), this);
     contBut->setText("ПРОДОЛЖИТЬ");
     QPushButton* managBut = new Button(QRect(276,210,258,47), QPixmap(), this);
-    managBut->setText("УПРАВЛЕНИЕ");
+    managBut->setText("НАСТРОЙКИ");
     QPushButton* recordsBut = new Button(QRect(276,284,258,47), QPixmap(), this);
     recordsBut->setText("РЕКОРДЫ");
-    QPushButton* aboutBut = new Button(QRect(276,358,258,47), QPixmap(), this);
-    aboutBut->setText("ОБ ИГРЕ");\
 
-    QObject::connect(aboutBut,SIGNAL(clicked()),this,SLOT(setAbout()));
+
     QObject::connect(contBut,SIGNAL(clicked()),this,SLOT(setCont()));
     QObject::connect(managBut,SIGNAL(clicked()),this,SLOT(setManage()));
     QObject::connect(recordsBut,SIGNAL(clicked()),this,SLOT(setRecs()));
@@ -55,6 +53,6 @@ void mainMenu::setCont()
 
 void mainMenu::setRecs()
 {
-     emit static_cast<QStackedWidget*>(parent())->setCurrentIndex(4);
+     emit static_cast<QStackedWidget*>(parent())->setCurrentIndex(3);
 }
 
