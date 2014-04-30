@@ -141,7 +141,7 @@ void MotionLooper::start()
         //printReport(*report_);
 
 		//Show frames
-        if (/*settings_->PRO_SETTINGS_MODE*/false) {
+        if (settings_->PRO_SETTINGS_MODE) {
 			motionDetector_->drawAreas(result, report_);
 			motionDetector_->drawAreas(motionFrame, report_);
 			cv::Mat mirResult;
