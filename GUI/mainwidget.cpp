@@ -16,6 +16,7 @@
 
 MainWidget::MainWidget(Settings *settings, QWidget *parent)
     : QWidget(parent)
+    , m_settings(settings)
     , m_scene(-105, -175, 808, 533)
     , m_centralWidgetRect(355, 176, 808, 533)
     , gameField(new Game(m_centralWidgetRect, &m_scene))
@@ -145,6 +146,7 @@ void MainWidget::initButtons()
    // QObject::connect(newGame,SIGNAL(clicked()),gameField,SLOT(newGame()));
     QObject::connect(pauseGame,SIGNAL(clicked()),gameField,SLOT(pauseGame()));
     QObject::connect(endGame,SIGNAL(clicked()),this,SLOT(close()));
+    QObject::connect(endGame,SIGNAL(clicked()), this, SLOT(endGameSlot()));
     QObject::connect(leftUp,SIGNAL(clicked()),gameField,SLOT(wolfLeftUp()));
     QObject::connect(rightUp,SIGNAL(clicked()),gameField,SLOT(wolfRightUp()));
     QObject::connect(leftDown,SIGNAL(clicked()),gameField,SLOT(wolfLeftDown()));
@@ -186,4 +188,10 @@ void MainWidget::newGameStart()
      gameField->newGame();
 }
 
+
+void MainWidget::endGameSlot()
+{
+    m_settings->STOP = true;
+    emit endSig();
+}
 

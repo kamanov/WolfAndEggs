@@ -61,36 +61,6 @@ RESOURCES += \
     GUI/resources.qrc
 RC_FILE = GUI/rec.rc
 
-OTHER_FILES += \
-    GameWolf.pro.user \
-    GUI/rec.rc \
-    GUI/chick.gif \
-    GUI/chickRight.gif \
-    GUI/hensLeft.gif \
-    GUI/hensRight.gif \
-    GUI/zaya.gif \
-    GUI/ic1.jpg \
-    GUI/back.png \
-    GUI/backabout.png \
-    GUI/background1.png \
-    GUI/backman.png \
-    GUI/backmenu.png \
-    GUI/but1.png \
-    GUI/but2.png \
-    GUI/chickenscore.png \
-    GUI/dialog.png \
-    GUI/ic1.png \
-    GUI/icon.png \
-    GUI/leftBottom.png \
-    GUI/leftTop.png \
-    GUI/menuBut.png \
-    GUI/pause.png \
-    GUI/rightBottom.png \
-    GUI/rightTop.png \
-    GUI/theend.png \
-    GUI/111.ico \
-    GUI/ic.ico \
-    GUI/GameWolf.pro.user.b871a8e.2.7pre1
 
 
 INCLUDEPATH += "C:\OpenCV\opencv\build\include"

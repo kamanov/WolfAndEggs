@@ -109,7 +109,7 @@ void Game::update(double dx, double dy)
             mov->setScaledSize(newSize);
             hens[i]->setGeometry(transformRect(m_hensRect[i], dx, dy));
             hens[i]->setMovie(mov);
-            //m_scene->addWidget(hens[i]);
+            m_scene->addWidget(hens[i]);
             mov->start();
     }
 

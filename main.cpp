@@ -27,16 +27,14 @@ int main(int argc, char *argv[])
     channel->moveToThread(thread);
 
     QObject::connect(channel, SIGNAL(sendReport(int)), &mainWidget, SLOT(setWolfPosition(int)), Qt::DirectConnection);
-
+    QObject::connect(&mainWidget, SIGNAL(endSig()), thread, SLOT(terminate()));
     QObject::connect(thread, SIGNAL(started()), channel, SLOT(process()));
-    QObject::connect(channel, SIGNAL(finished()), thread, SLOT(quit()));
-    QObject::connect(channel, SIGNAL(finished()), channel, SLOT(deleteLater()));
-    QObject::connect(thread, SIGNAL(finished()), thread, SLOT(deleteLater()));
 
     thread->start();
 
     mainWidget.show();
     a.exec();
+    thread->wait();
 
     delete thread;
     delete channel;

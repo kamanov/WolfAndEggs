@@ -27,7 +27,7 @@ protected:
     void resizeEvent(QResizeEvent * event);
 
 private:
-
+    Settings* m_settings;
     static const int fieldH = 891;
     static const int fieldW = 1521;
     QGraphicsScene m_scene;
@@ -54,8 +54,10 @@ private:
 signals:
     void pauseGame();
     void continueGame();
+    void endSig();
 
 public slots:
+    void endGameSlot();
     void setWolfPosition(int pos);
     void enterMenu();
     void goToRecords();
