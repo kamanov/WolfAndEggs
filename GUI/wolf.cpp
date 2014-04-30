@@ -8,6 +8,7 @@ Wolf::Wolf(QGraphicsItem * parent)
     ,curVal(0)
     ,avaible(true)
 {
+    qRegisterMetaType<Wolf::WolfPosition>("Wolf::WolfPosition");
     const QString pix_name[4]={"leftTop","leftBottom","rightTop","rightBottom"};
     for(int i = 0; i < 4; i++)
     {
