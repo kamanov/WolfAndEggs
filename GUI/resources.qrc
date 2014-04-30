@@ -1,0 +1,26 @@
+<RCC>
+    <qresource prefix="/">
+        <file>background1.png</file>
+        <file>back.png</file>
+        <file>backabout.png</file>
+        <file>backman.png</file>
+        <file>backmenu.png</file>
+        <file>but1.png</file>
+        <file>but2.png</file>
+        <file>chickenscore.png</file>
+        <file>dialog.png</file>
+        <file>leftBottom.png</file>
+        <file>leftTop.png</file>
+        <file>menuBut.png</file>
+        <file>pause.png</file>
+        <file>rightBottom.png</file>
+        <file>rightTop.png</file>
+        <file>theend.png</file>
+        <file>chick.gif</file>
+        <file>chickRight.gif</file>
+        <file>hensLeft.gif</file>
+        <file>hensRight.gif</file>
+        <file>zaya.gif</file>
+        <file>ic.ico</file>
+    </qresource>
+</RCC>
