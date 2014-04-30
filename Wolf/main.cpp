@@ -15,22 +15,17 @@
 
 int main(int argc, char *argv[])
 {
-
-
     QApplication a(argc, argv);
     QIcon ic(":/ic.ico");
     QApplication::setWindowIcon(ic);
-    MainWidget mainWidget;
 
-    ////////////////
-    Settings* settings = new Settings();
+    Settings settings;
+    MainWidget mainWidget(&settings);
 
-
-    MotionLooper* ml = new MotionLooper(settings);
+    MotionLooper* ml = new MotionLooper(&settings);
     Channel* channel= new Channel(ml);
     QThread* thread = new QThread;
     channel->moveToThread(thread);
-
 
     QObject::connect(channel, SIGNAL(sendReport(int)), &mainWidget, SLOT(setWolfPosition(int)), Qt::DirectConnection);
 
@@ -40,9 +35,9 @@ int main(int argc, char *argv[])
     QObject::connect(thread, SIGNAL(finished()), thread, SLOT(deleteLater()));
 
     thread->start();
-    ///////////////////////
 
     mainWidget.show();
+    a.exec();
 
-    return a.exec();
+    return 0;
 }
