@@ -101,8 +101,8 @@ void MotionLooper::start()
 
 	settings_->FRAME_WIDTH = current_frame.cols;
 	settings_->FRAME_HEIGHT = current_frame.rows;
-	settings_->AREA_WIDTH = settings_->FRAME_WIDTH / 6;
-	settings_->AREA_HEIGHT = settings_->FRAME_HEIGHT / 6;
+    settings_->AREA_WIDTH = settings_->FRAME_WIDTH / 10;
+    settings_->AREA_HEIGHT = settings_->FRAME_HEIGHT / 5;
 
 	readSettings();
 
@@ -133,11 +133,11 @@ void MotionLooper::start()
 		//end motion detection
 
         if (motionOccurred()) {
-            std::cout << getNumberArea(*report_) <<std::endl;
+            //std::cout << getNumberArea(*report_) <<std::endl;
             owner_->sendReport(getNumberArea(*report_));
         }
 
-        printReport(*report_);
+        //printReport(*report_);
 
 		//Show frames
 		if (settings_->PRO_SETTINGS_MODE) {
