@@ -28,3 +28,23 @@ void Settings::setDefault()
     ERODE = false;
 	DILATE = true;
 }
+
+void Settings::changeFrameWidth(int x) { FRAME_WIDTH = x; }
+void Settings::changeFrameHeigth(int x) { FRAME_WIDTH = x; }
+void Settings::changeAreaWidth(int x ) { AREA_WIDTH = x; }
+void Settings::changeAreaHeight(int x) { AREA_HEIGHT = x; }
+void Settings::changeShiftFromBorder(int x) { SHIFT_FROM_BORDER = x; }
+
+void Settings::changeMaxDeviation( int x) { MAX_DEVIATION = x; }
+void Settings::changeCoverRatio( double x) { COVER_RATIO = x; }
+
+void Settings::changeKernelEroSize(int x) { KERNEL_ERO_SIZE = x; }
+void Settings::changeKernelDilSize(int x){ KERNEL_DIL_SIZE = x; }
+
+void Settings::changeErode(bool b) { ERODE = b; }
+void Settings::changeDilate(bool b) { DILATE = b; }
+
+void Settings::changeThreshold(int x) { THRESHOLD = x; }
+void Settings::changeDelay(int x) { DELAY = x; }
+
+void Settings::changeProSettigsMode(bool b) { PRO_SETTINGS_MODE = b; }
