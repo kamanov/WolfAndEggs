@@ -2,9 +2,11 @@
 #define WOLF_H
 #include <QtWidgets/QGraphicsObject>
 
+
 class Wolf : public QGraphicsObject
 {
     Q_OBJECT
+
 public:
     enum WolfPosition {leftUp,leftDown,rightUp,rightDown};
     Wolf(QGraphicsItem * parent = 0);
@@ -28,6 +30,7 @@ private:
     QPoint initPos[4];
     int curVal;
 };
-
+//sqRegisterMetaType("Wolf::WolfPosition");
+Q_DECLARE_METATYPE(Wolf::WolfPosition)
 
 #endif // WOLF_H
