@@ -29,6 +29,8 @@ public:
 
 	bool PRO_SETTINGS_MODE;
 
+    bool STOP;
+
 	Settings();
 	void setDefault();
 
@@ -54,6 +56,7 @@ public slots:
 
    void changeProSettigsMode(bool);
 
+   void changeStop(bool);
 
 };
 

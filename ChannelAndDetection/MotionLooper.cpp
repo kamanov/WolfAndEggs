@@ -155,8 +155,8 @@ void MotionLooper::start()
             cv::destroyAllWindows();
         }
 
-		if (isStopRequested) {
-            isStopRequested = false;
+        if (settings_->STOP) {
+            STOP = false;
 			break;
 		}
 

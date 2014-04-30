@@ -27,6 +27,8 @@ void Settings::setDefault()
 	PRO_SETTINGS_MODE = true;
     ERODE = false;
 	DILATE = true;
+
+    STOP = false;
 }
 
 void Settings::changeFrameWidth(int x) { FRAME_WIDTH = x; }
@@ -48,3 +50,5 @@ void Settings::changeThreshold(int x) { THRESHOLD = x; }
 void Settings::changeDelay(int x) { DELAY = x; }
 
 void Settings::changeProSettigsMode(bool b) { PRO_SETTINGS_MODE = b; }
+
+void Settings::changeStop(bool b) { STOP = b; }
