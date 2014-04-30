@@ -56,7 +56,7 @@ public slots:
 
    void changeProSettigsMode(bool);
 
-   void changeStop(bool);
+   void changeStop();
 
 };
 
