@@ -24,7 +24,7 @@ void Settings::setDefault()
 	THRESHOLD = 30;
     DELAY = 30;
 
-	PRO_SETTINGS_MODE = true;
+    PRO_SETTINGS_MODE = false;
     ERODE = false;
 	DILATE = true;
 
