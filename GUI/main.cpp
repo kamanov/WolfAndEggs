@@ -8,6 +8,9 @@ int main(int argc, char *argv[])
     QIcon ic(":/ic.ico");
     QApplication::setWindowIcon(ic);
     MainWidget mainWidget;
+
+
+
     mainWidget.show();
 
     return a.exec();

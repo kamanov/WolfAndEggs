@@ -20,11 +20,11 @@ public:
 
 public slots:
    void process();
-   void getSettings();
+   void getSettings(Settings* settings);
 
 signals:
    void finished();
-   void sendReport();
+   void sendReport(int numberArea);
 
 };
 
