@@ -36,6 +36,7 @@ Game::Game(QRect &rect, QGraphicsScene* scene, QWidget* parent)
     setWindowFlags(Qt::FramelessWindowHint);
     //set background
 
+
     //setFixedSize(808, 533);
     QPalette p = palette();
     p.setBrush(backgroundRole(), QBrush(m_background));
@@ -75,12 +76,12 @@ Game::~Game()
 void Game::setWolfPosition(int pos)
 {
     switch (pos) {
-    case 1 : emit replaceWolf(Wolf::leftUp);
+    case 1 : emit replaceWolf(Wolf::WolfPosition::leftUp);
 
         break;
-    case 2 : emit replaceWolf(Wolf::rightUp);
-    case 3 : emit replaceWolf(Wolf::leftDown);
-    case 4 : emit replaceWolf(Wolf::leftUp);
+    case 2 : emit replaceWolf(Wolf::WolfPosition::rightUp);
+    case 3 : emit replaceWolf(Wolf::WolfPosition::leftDown);
+    case 4 : emit replaceWolf(Wolf::WolfPosition::leftUp);
     default:
         break;
     }
@@ -137,13 +138,13 @@ void Game::keyPressEvent(QKeyEvent *event)
 {
     if(!vendGame){
         switch(event->nativeScanCode()) {
-            case 30: emit replaceWolf(Wolf::leftUp);
+            case 30: emit replaceWolf(Wolf::WolfPosition::leftUp);
                 break;
-            case 44:emit replaceWolf(Wolf::leftDown);
+            case 44:emit replaceWolf(Wolf::WolfPosition::leftDown);
                 break;
-            case 37:emit replaceWolf(Wolf::rightUp);
+            case 37:emit replaceWolf(Wolf::WolfPosition::rightUp);
                 break;
-            case 50:emit replaceWolf(Wolf::rightDown);
+            case 50:emit replaceWolf(Wolf::WolfPosition::rightDown);
                 break;
             default: QGraphicsView::keyPressEvent(event);
         }

@@ -13,6 +13,7 @@
 class Game : public QGraphicsView
 {
     Q_OBJECT
+
 signals:
     void replaceWolf(Wolf::WolfPosition);
     void startHen(int);
@@ -78,10 +79,10 @@ public slots:
     void finishAnimation();
     void eggFactory();
     void animeHen(int n);
-    void wolfLeftUp(){emit replaceWolf(Wolf::leftUp);}
-    void wolfRightUp(){emit replaceWolf(Wolf::rightUp);}
-    void wolfLeftDown(){emit replaceWolf(Wolf::leftDown);}
-    void wolfRightDown(){emit replaceWolf(Wolf::rightDown);}
+    void wolfLeftUp(){emit replaceWolf(Wolf::WolfPosition::leftUp);}
+    void wolfRightUp(){emit replaceWolf(Wolf::WolfPosition::rightUp);}
+    void wolfLeftDown(){emit replaceWolf(Wolf::WolfPosition::leftDown);}
+    void wolfRightDown(){emit replaceWolf(Wolf::WolfPosition::rightDown);}
     void pauseGame();
     void newGame();
     void endGameProc();

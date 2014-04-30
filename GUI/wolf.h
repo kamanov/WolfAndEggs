@@ -30,7 +30,7 @@ private:
     QPoint initPos[4];
     int curVal;
 };
-//sqRegisterMetaType("Wolf::WolfPosition");
+
 Q_DECLARE_METATYPE(Wolf::WolfPosition)
 
 #endif // WOLF_H
