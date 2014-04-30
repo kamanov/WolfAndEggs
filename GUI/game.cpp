@@ -80,8 +80,11 @@ void Game::setWolfPosition(int pos)
 
         break;
     case 2 : emit replaceWolf(Wolf::WolfPosition::rightUp);
+        break;
     case 3 : emit replaceWolf(Wolf::WolfPosition::leftDown);
+        break;
     case 4 : emit replaceWolf(Wolf::WolfPosition::rightDown);
+        break;
     default:
         break;
     }
