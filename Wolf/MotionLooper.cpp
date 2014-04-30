@@ -122,7 +122,9 @@ void MotionLooper::start()
 		prev_frame = current_frame;
 		current_frame = next_frame;
 		cam >> next_frame;
-		result = next_frame;
+
+        result = next_frame.clone();
+        cv::blur( next_frame, next_frame, cv::Size( 15, 15 ) );
 
         if(next_frame.channels() == 3)
             cv::cvtColor(next_frame, next_frame, CV_RGB2GRAY);
